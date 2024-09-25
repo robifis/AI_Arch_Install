@@ -1,0 +1,33 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "modules-left": ["workspaces"],
+    "modules-center": [],
+    "modules-right": ["cpu", "memory", "disk", "clock"],
+
+    "workspaces": {
+        "format": "{name}"
+    },
+
+    "cpu": {
+        "format": "{usage}%",
+        "tooltip": false
+    },
+
+    "memory": {
+        "format": "{used}/{total} GB",
+        "tooltip": false
+    },
+
+    "disk": {
+        "format": "{used}/{total} GB",
+        "tooltip": false,
+        "mount-pt": "/"
+    },
+
+    "clock": {
+        "format": "{:%H:%M:%S}",
+        "tooltip": false
+    }
+}
