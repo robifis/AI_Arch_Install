@@ -98,6 +98,11 @@ env = CLUTTER_BACKEND,wayland
 env = XDG_CURRENT_DESKTOP,Hyprland
 env = XDG_SESSION_TYPE,wayland
 env = XDG_SESSION_DESKTOP,Hyprland
+env = XCURSOR_SIZE,24
+env = GDK_SCALE,1.5
+env = GDK_DPI_SCALE,1.5
+env = QT_AUTO_SCREEN_SCALE_FACTOR,1
+env = QT_SCALE_FACTOR,1.5
 
 # Example for 1.5x scaling (adjust as needed)
 monitor=,preferred,auto,1.5
@@ -135,12 +140,12 @@ EOF
 
 # Set up environment variables
 print_message "Setting up environment variables"
-sudo tee /etc/environment.d/10-wayland-hidpi.conf > /dev/null << EOF
-XCURSOR_SIZE=24
-GDK_SCALE=1.5
-GDK_DPI_SCALE=1.5
-QT_AUTO_SCREEN_SCALE_FACTOR=1
-QT_SCALE_FACTOR=1.5
+sudo tee /etc/profile.d/wayland-hidpi.sh > /dev/null << EOF
+export XCURSOR_SIZE=24
+export GDK_SCALE=1.5
+export GDK_DPI_SCALE=1.5
+export QT_AUTO_SCREEN_SCALE_FACTOR=1
+export QT_SCALE_FACTOR=1.5
 EOF
 
-print_message "Setup complete! Please log out and log back in for changes to take effect."
+print_message "Setup complete! Please reboot your system for all changes to take effect."
