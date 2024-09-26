@@ -29,10 +29,20 @@ zinit light jeffreytse/zsh-vi-mode
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 
-# Aliases
-alias ls='ls --color=auto'
-alias ll='ls -lah'
-alias grep='grep --color=auto'
+# Comprehensive eza alias
+alias ls='eza --all --long --header --icons --group-directories-first --git --time-style=long-iso --color-scale --extended --grid'
+
+# eza colors
+export EZA_COLORS="uu=36:gu=37:sn=32:sb=32:da=34:ur=34:uw=35:ux=36:ue=36:gr=34:gw=35:gx=36:tr=34:tw=35:tx=36:"
+
+# eza icons-first configuration
+export EZA_ICON_SPACING=2
+
+# Set the cursor to block shape
+echo -ne '\e[1 q'
+
+# Use beam shape cursor for each new prompt
+preexec() { echo -ne '\e[5 q' ;}
 
 # Environment variables
 export EDITOR='vim'
