@@ -1,54 +1,54 @@
 /* ~/.config/waybar/style.css */
-
-/* General Bar Styling */
-#waybar {
-    background: #282828; /* Replace with your preferred background color */
-    color: #ebdbb2; /* Default text color */
-    font-family: "JetBrainsMono Nerd Font", monospace;
-    font-size: 11px;
-}
-
-/* Module Styling */
-.module {
-    padding: 0 10px;
-}
-
-/* Workspace */
-#workspaces button {
-    background: transparent;
+* {
     border: none;
-    color: #ebdbb2;
+    border-radius: 0;
+    font-family: "YourPreferredFont", "Font Awesome 5 Free";
+    font-size: 13px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(36, 36, 54, 0.9);
+    color: #ff7edb;
+}
+
+#workspaces button {
     padding: 0 5px;
-    margin: 0 2px;
+    background-color: transparent;
+    color: #ff7edb;
+}
+
+#workspaces button:hover {
+    background: rgba(249, 42, 173, 0.2);
+    box-shadow: inherit;
 }
 
 #workspaces button.active {
-    background: #458588;
-    color: #ffffff;
-    border-radius: 4px;
+    background-color: rgba(249, 42, 173, 0.4);
 }
 
-/* CPU */
-#cpu {
-    color: #fabd2f; /* Example color */
+#clock,
+#cpu,
+#memory,
+#disk,
+#tray {
+    padding: 0 10px;
+    margin: 0 4px;
+    color: #ff7edb;
 }
 
-/* Memory */
-#memory {
-    color: #b8bb26; /* Example color */
-}
-
-/* Disk */
-#disk {
-    color: #d79921; /* Example color */
-}
-
-/* Clock */
 #clock {
-    color: #83a598; /* Example color */
+    background-color: rgba(249, 42, 173, 0.3);
 }
 
-/* Add transitions for smoothness */
-.module {
-    transition: color 0.3s, background 0.3s;
+#cpu {
+    background-color: rgba(54, 249, 246, 0.3);
+}
+
+#memory {
+    background-color: rgba(255, 126, 219, 0.3);
+}
+
+#disk {
+    background-color: rgba(103, 248, 132, 0.3);
 }

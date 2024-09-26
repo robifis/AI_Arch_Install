@@ -1,126 +1,88 @@
-# ============================================
-# تنظیمات عمومی
-# ============================================
+# ~/.config/alacritty/alacritty.toml
 
-# تنظیم فونت
-font:
-  normal:
-    family: "JetBrainsMono Nerd Font"
-    style: "Regular"
-  size: 16.0
+[env]
+TERM = "xterm-256color"
 
-# تنظیم رنگ‌ها (تم Synthwave)
-colors:
-  primary:
-    background: '#0F0C29'  # رنگ پس‌زمینه
-    foreground: '#FFFFFF'  # رنگ متن
-  normal:
-    black:   '#1C1C1C'
-    red:     '#FF6B6B'
-    green:   '#6BCB77'
-    yellow:  '#FFD93D'
-    blue:    '#D77DD2'
-    magenta: '#C23BEE'
-    cyan:    '#69F0AE'
-    white:   '#E0E0E0'
-  bright:
-    black:   '#414141'
-    red:     '#FF6E6E'
-    green:   '#B6E880'
-    yellow:  '#FFE29E'
-    blue:    '#89DDFF'
-    magenta: '#C792EA'
-    cyan:    '#A3F7FF'
-    white:   '#FFFFFF'
+[window]
+padding = { x = 10, y = 10 }
+decorations = "None"
+startup_mode = "Windowed"
+dynamic_title = true
 
-# ============================================
-# تنظیمات پنجره
-# ============================================
+[scrolling]
+history = 10000
+multiplier = 3
 
-# حاشیه‌های پنجره
-window:
-  padding:
-    x: 10
-    y: 10
-  dynamic_padding: false
-  decorations: full
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+size = 11.0
 
-# ============================================
-# تنظیمات اسکرول
-# ============================================
+[colors.primary]
+background = "#262335"
+foreground = "#f0eff1"
 
-scrolling:
-  history: 10000
-  auto_save_on_scroll: false
+[colors.cursor]
+text = "#f0eff1"
+cursor = "#f92aad"
 
-# ============================================
-# تنظیمات مشکل‌پذیری
-# ============================================
+[colors.normal]
+black = "#2b213c"
+red = "#ff8080"
+green = "#95ffa4"
+yellow = "#ffe9aa"
+blue = "#91ddff"
+magenta = "#c991e1"
+cyan = "#aaffe4"
+white = "#cbe3e7"
 
-selection:
-  semantic_escape_chars: " `!@#$%^&*()-=+[{]}\\|;:'\",<.>/?"
+[colors.bright]
+black = "#565575"
+red = "#ff5458"
+green = "#62d196"
+yellow = "#ffb378"
+blue = "#65b2ff"
+magenta = "#906cff"
+cyan = "#63f2f1"
+white = "#a6b3cc"
 
-# ============================================
-# تنظیمات موس
-# ============================================
+[colors.selection]
+text = "#f0eff1"
+background = "#ff8080"
 
-mouse:
-  double_click:
-    threshold: 300
-  triple_click:
-    threshold: 300
+[bell]
+animation = "EaseOutExpo"
+duration = 0
 
-# ============================================
-# تنظیمات کپی و پیست
-# ============================================
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true
 
-clipboard:
-  # فعال‌سازی کلیپ‌بورد Wayland
-  clipboard: true
+[cursor]
+style = { shape = "Block", blinking = "On" }
+vi_mode_style = "Block"
+blink_interval = 750
 
-# ============================================
-# تنظیمات ویسول
-# ============================================
+[mouse]
+hide_when_typing = true
 
-# تعداد خطوط visible در ویسول
-scrolling:
-  history: 10000
-
-# ============================================
-# تنظیمات انیمیشن
-# ============================================
-
-# فعال کردن انیمیشن‌ها
-enable_animations: true
-
-# ============================================
-# تنظیمات ترمینال
-# ============================================
-
-colors:
-  cursor:
-    text: '#FFFFFF'
-    cursor: '#FF6EC7'
-  selection:
-    text: '#FFFFFF'
-    background: '#A3F7FF'
-
-# ============================================
-# تنظیمات کاراکتر
-# ============================================
-
-char:
-  unicode_version: "12.1"
-
-# ============================================
-# تنظیمات انترپرتر داخلی
-# ============================================
-
-shell:
-  program: /bin/bash
-  args:
-    - --login
-
-# ============================================
-# پایان تنظیمات
-# ============================================
+[keyboard]
+bindings = [
+    { key = "V", mods = "Control|Shift", action = "Paste" },
+    { key = "C", mods = "Control|Shift", action = "Copy" },
+    { key = "Insert", mods = "Shift", action = "PasteSelection" },
+    { key = "Key0", mods = "Control", action = "ResetFontSize" },
+    { key = "Equals", mods = "Control", action = "IncreaseFontSize" },
+    { key = "Minus", mods = "Control", action = "DecreaseFontSize" },
+    { key = "F11", mods = "None", action = "ToggleFullscreen" },
+    { key = "Paste", mods = "None", action = "Paste" },
+    { key = "Copy", mods = "None", action = "Copy" },
+    { key = "L", mods = "Control", action = "ClearLogNotice" },
+    { key = "L", mods = "Control", chars = "\f" },
+    { key = "PageUp", mods = "None", action = "ScrollPageUp" },
+    { key = "PageDown", mods = "None", action = "ScrollPageDown" },
+    { key = "Home", mods = "Shift", action = "ScrollToTop" },
+    { key = "End", mods = "Shift", action = "ScrollToBottom" },
+]
