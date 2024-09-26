@@ -1,33 +1,40 @@
+// ~/.config/waybar/config
 {
     "layer": "top",
     "position": "top",
     "height": 30,
-    "modules-left": ["workspaces"],
-    "modules-center": [],
-    "modules-right": ["cpu", "memory", "disk", "clock"],
-
-    "workspaces": {
-        "format": "{name}"
+    "spacing": 4,
+    "modules-left": ["hyprland/workspaces"],
+    "modules-center": ["clock"],
+    "modules-right": ["cpu", "memory", "disk", "tray"],
+    "hyprland/workspaces": {
+        "disable-scroll": true,
+        "all-outputs": true,
+        "format": "{name}",
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        }
     },
-
-    "cpu": {
-        "format": "{usage}%",
-        "tooltip": false
-    },
-
-    "memory": {
-        "format": "{used}/{total} GB",
-        "tooltip": false
-    },
-
-    "disk": {
-        "format": "{used}/{total} GB",
-        "tooltip": false,
-        "mount-pt": "/"
-    },
-
     "clock": {
-        "format": "{:%H:%M:%S}",
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%Y-%m-%d %H:%M}"
+    },
+    "cpu": {
+        "format": "CPU {usage}%",
         "tooltip": false
+    },
+    "memory": {
+        "format": "RAM {}%"
+    },
+    "disk": {
+        "interval": 30,
+        "format": "Disk {percentage_used}%",
+        "path": "/"
+    },
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
     }
 }
