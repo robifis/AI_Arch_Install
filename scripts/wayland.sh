@@ -16,38 +16,18 @@ sudo pacman -Syu --noconfirm
 
 # Install basic Wayland support
 print_message "Installing basic Wayland support"
-sudo pacman -S --noconfirm wayland wayland-protocols libwayland-egl xorg-xwayland
-
-# Install audio support
-print_message "Installing audio support"
-sudo pacman -S --noconfirm pipewire pipewire-pulse pipewire-alsa pipewire-jack wireplumber
+sudo pacman -S --noconfirm wayland wayland-protocols xorg-xwayland
 
 # Install graphics drivers
 print_message "Installing graphics drivers"
 # Uncomment the line for your GPU
 # sudo pacman -S --noconfirm mesa intel-media-driver libva-intel-driver  # Intel
-# sudo pacman -S --noconfirm mesa libva-mesa-driver mesa-vdpau  # AMD
+sudo pacman -S --noconfirm mesa libva-mesa-driver mesa-vdpau  # AMD
 # sudo pacman -S --noconfirm nvidia nvidia-utils  # NVIDIA
 
 # Install Wayland-specific tools
 print_message "Installing Wayland-specific tools"
 sudo pacman -S --noconfirm qt5-wayland qt6-wayland glfw-wayland wl-clipboard
-
-# Install screen capture and sharing tools
-print_message "Installing screen capture and sharing tools"
-sudo pacman -S --noconfirm grim slurp wf-recorder
-
-# Install notification daemon
-print_message "Installing notification daemon"
-sudo pacman -S --noconfirm mako
-
-# Install application launcher
-print_message "Installing application launcher"
-sudo pacman -S --noconfirm wofi
-
-# Install color temperature adjustment tool
-print_message "Installing color temperature adjustment tool"
-sudo pacman -S --noconfirm gammastep
 
 # Install GTK theme for Wayland
 print_message "Installing GTK theme for Wayland"
@@ -65,10 +45,6 @@ sudo pacman -S --noconfirm gst-plugins-base gst-plugins-good gst-plugins-bad gst
 print_message "Installing hardware video acceleration"
 sudo pacman -S --noconfirm libva libva-utils vdpauinfo
 
-# Install Wayland-native terminal
-print_message "Installing Wayland-native terminal"
-sudo pacman -S --noconfirm foot
-
 # Install HiDPI support
 print_message "Installing HiDPI support"
 sudo pacman -S --noconfirm xorg-xrdb
@@ -80,33 +56,6 @@ sudo pacman -S --noconfirm polkit-gnome
 # Create Hyprland config directory
 print_message "Creating Hyprland config directory"
 mkdir -p ~/.config/hypr
-
-# Create basic Hyprland config
-print_message "Creating basic Hyprland config"
-cat << EOF > ~/.config/hypr/hyprland.conf
-# Start notification daemon
-exec-once = mako
-
-# Start polkit agent
-exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
-# Set environment variables
-env = QT_QPA_PLATFORM,wayland
-env = GDK_BACKEND,wayland
-env = SDL_VIDEODRIVER,wayland
-env = CLUTTER_BACKEND,wayland
-env = XDG_CURRENT_DESKTOP,Hyprland
-env = XDG_SESSION_TYPE,wayland
-env = XDG_SESSION_DESKTOP,Hyprland
-env = XCURSOR_SIZE,24
-env = GDK_SCALE,1.5
-env = GDK_DPI_SCALE,1.5
-env = QT_AUTO_SCREEN_SCALE_FACTOR,1
-env = QT_SCALE_FACTOR,1.5
-
-# Example for 1.5x scaling (adjust as needed)
-monitor=,preferred,auto,1.5
-EOF
 
 # Create fontconfig directory
 print_message "Creating fontconfig directory"

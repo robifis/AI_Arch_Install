@@ -13,6 +13,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'artanikin/vim-synthwave84'
+Plug 'ashervb/synthwave.vim'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
@@ -41,7 +42,7 @@ set termguicolors
 
 " Theme
 colorscheme synthwave84
-let g:airline_theme='synthwave'
+let g:airline_theme='synthwave84'
 
 " Airline settings
 let g:airline#extensions#tabline#enabled = 1
