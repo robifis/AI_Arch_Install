@@ -1,43 +1,79 @@
-// ~/.config/waybar/config
 {
     "layer": "top",
     "position": "top",
-    "height": 40,
-    "spacing": 4,
-    "modules-left": ["hyprland/workspaces"],
-    "modules-center": ["clock"],
-    "modules-right": ["cpu", "memory", "disk", "tray"],
+    "height": 30,
+    "spacing": 0,
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["custom/weather", "temperature", "pulseaudio", "custom/ping", "cpu", "memory", "disk", "custom/copyq", "clock", "custom/powermenu"],
+    
     "hyprland/workspaces": {
-        "disable-scroll": true,
-        "all-outputs": true,
         "format": "{name}",
-        "format-icons": {
-            "urgent": "",
-            "active": "",
-            "default": ""
-        }
+        "on-click": "activate",
+        "sort-by-number": true
     },
+    
+    "hyprland/window": {
+        "max-length": 50
+    },
+    
+    "cpu": {
+        "format": "CPU {usage}% @ {avg_frequency}GHz",
+        "tooltip": false,
+        "interval": 1
+    },
+    
+    "memory": {
+        "format": "RAM {used:0.1f}GB/{total:0.1f}GB",
+        "tooltip": false,
+        "interval": 1
+    },
+    
+    "disk": {
+        "interval": 30,
+        "format": "Disk {used}/{total}",
+        "path": "/"
+    },
+    
+    "custom/copyq": {
+        "format": "CopyQ",
+        "on-click": "copyq toggle",
+        "tooltip": false
+    },
+    
     "clock": {
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "format": "{:%Y-%m-%d %H:%M}"
     },
-    "cpu": {
-        "format": "CPU {usage}%",
+    
+    "custom/ping": {
+        "format": "Ping {}ms",
+        "exec": "ping -c 1 8.8.8.8 | grep -oP '(?<=time=)\\d+' || echo 'error'",
+        "interval": 60
+    },
+    
+    "temperature": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C",
+        "format": "{temperatureC}°C"
+    },
+    
+    "pulseaudio": {
+        "format": "Vol {volume}%",
+        "format-muted": "Muted",
+        "on-click": "pavucontrol"
+    },
+    
+    "custom/weather": {
+        "exec": "curl -s 'https://wttr.in/Liverpool,UK?format=%C+%t'",
+        "interval": 3600
+    },
+    
+    "custom/powermenu": {
+        "format": "⏻",
+        "on-click": "~/.config/waybar/powermenu.sh",
         "tooltip": false
-    },
-    "memory": {
-        "format": "RAM {used:0.1f}GB",
-    },
-    "disk": {
-        "interval": 30,
-        "format": "Disk {percentage_used}%",
-        "path": "/",
-        "tooltip": true,
-        "tooltip-format": "{used}/{total}({percentage_used}%)",
-    }
-    ,
-    "tray": {
-        "icon-size": 24,
-        "spacing": 10
     }
 }
