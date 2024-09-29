@@ -1,4 +1,3 @@
-```markdown
 # Comprehensive Arch Linux Installation Guide
 
 ## Table of Contents
@@ -217,5 +216,4 @@ reboot
 After reboot, login and start Hyprland:
 ```bash
 startx
-```
 ```
