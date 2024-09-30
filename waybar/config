@@ -1,0 +1,84 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 30,
+    "spacing": 0,
+    "modules-left": ["hyprland/workspaces", "hyprland/window"],
+    "modules-center": [],
+    "modules-right": ["custom/weather", "temperature", "pulseaudio", "custom/ping", "cpu", "memory", "disk", "custom/copyq", "clock", "tray", "custom/powermenu"],
+    
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "sort-by-number": true
+    },
+    
+    "hyprland/window": {
+        "max-length": 50
+    },
+    
+    "cpu": {
+        "format": "CPU {usage}% @ {avg_frequency}GHz",
+        "tooltip": false,
+        "interval": 1
+    },
+    
+    "memory": {
+        "format": "RAM {used:0.1f}GB/{total:0.1f}GB",
+        "tooltip": false,
+        "interval": 1
+    },
+    
+    "disk": {
+        "interval": 30,
+        "format": "Disk {used}/{total}",
+        "path": "/"
+    },
+    
+    "custom/copyq": {
+        "format": "CopyQ",
+        "on-click": "copyq toggle",
+        "tooltip": false
+    },
+    
+    "clock": {
+        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+        "format": "{:%Y-%m-%d %H:%M}"
+    },
+    
+    "custom/ping": {
+        "format": "Ping {}ms",
+        "exec": "ping -c 1 8.8.8.8 | grep -oP '(?<=time=)\\d+' || echo 'error'",
+        "interval": 60
+    },
+    
+    "temperature": {
+        "thermal-zone": 2,
+        "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+        "critical-threshold": 80,
+        "format-critical": "{temperatureC}°C",
+        "format": "{temperatureC}°C"
+    },
+    
+    "pulseaudio": {
+        "format": "Vol {volume}%",
+        "format-muted": "Muted",
+        "on-click": "pavucontrol"
+    },
+    
+    "custom/weather": {
+        "exec": "curl -s 'https://wttr.in/Liverpool,UK?format=%C+%t'",
+        "interval": 3600
+    },
+    
+    "custom/powermenu": {
+        "format": "⏻",
+        "on-click": "~/.config/waybar/powermenu.sh",
+        "tooltip": false
+    },
+
+    "tray": {
+        "icon-size": 21,
+        "spacing": 10
+    }
+}
