@@ -1,0 +1,158 @@
+# i3 config file (v4)
+
+# Set mod key (Mod1=<Alt>, Mod4=<Super>)
+set $mod Mod1
+
+# Set default terminal and application launcher
+set $terminal alacritty
+set $menu wofi --show drun
+
+# Font for window titles and bar (unless specified in bar {} block)
+font pango:JetBrainsMono Nerd Font Mono 13
+
+# Use Mouse+$mod to drag floating windows
+floating_modifier $mod
+
+# Start a terminal
+bindsym $mod+Return exec $terminal
+
+# Kill focused window
+bindsym $mod+Shift+q kill
+
+# Start application launcher
+bindsym $mod+space exec $menu
+
+# Vim-like focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+# Vim-like window movement
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+# Split in horizontal orientation
+bindsym $mod+b split h
+
+# Split in vertical orientation
+bindsym $mod+v split v
+
+# Enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# Change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+t focus mode_toggle
+
+# Focus the parent container
+bindsym $mod+a focus parent
+
+# Define names for default workspaces
+set $ws1 "1:term"
+set $ws2 "2:files"
+set $ws3 "3:www"
+set $ws4 "4:generic"
+set $ws5 "5:generic"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Window rules
+assign [class="Alacritty"] $ws1
+assign [class="firefox"] $ws3
+
+# Theme colors (Dracula)
+set $bg-color            #282a36
+set $inactive-bg-color   #44475a
+set $text-color          #f8f8f2
+set $inactive-text-color #6272a4
+set $urgent-bg-color     #ff5555
+set $indicator-color     #bd93f9
+
+# Window colors
+client.focused          $bg-color           $bg-color          $text-color          $indicator-color
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color $indicator-color
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color $indicator-color
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          $indicator-color
+
+# Gaps
+gaps inner 10
+gaps outer 10
+
+# Remove title bar
+for_window [class="^.*"] border pixel 4
+
+# Set opacity
+for_window [class="^.*"] opacity 1.0
+for_window [class="^.*" con_id="__focused__"] opacity 1.0
+for_window [class="^.*" con_id="__focused__" con_id="__floating__"] opacity 1.0
+
+# Autostart applications
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec --no-startup-id dunst
+exec --no-startup-id copyq
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# Screen orientation (you may need to adjust these based on your setup)
+bindsym $mod+F1 exec xrandr --output eDP-1 --rotate normal
+bindsym $mod+F2 exec xrandr --output eDP-1 --rotate left
